@@ -4,5 +4,51 @@
 {% block pagetitle%}Dashboard{% endblock %}
 
 {% block content %}
-<p>HOLA MUNDO</p>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: auto;
+        background-color: white;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Fecha</th>
+    </thead>
+    <tbody>
+        {% for r in report %}
+        <tr>
+            
+            <td>{{r.id}}</td>
+            <td>{{r.descripcion}}</td>
+            <td>{{r.fecha}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<input type="checkbox" onclick="showlabel()" name="recurrent" id="idrecurrent">
+<label id="show" style="display: none;">mañana hay clases</label>
+<a href="{% url 'formreport' %}" class="btn-secondary" style="margin: auto;">Reportar</a>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function showlabel(){
+        var showlabel = document.getElementById("show");
+        if (document.getElementById('idrecurrent').checked){
+            showlabel.style.display = "block";
+        }
+        else{
+            showlabel.style.display = "none";
+        }
+
+    }
+
+</script>
 {% endblock %}

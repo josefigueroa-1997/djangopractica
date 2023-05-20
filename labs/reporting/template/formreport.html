@@ -1,0 +1,29 @@
+{% extends '_partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form method="post" onsubmit="return validateform()">
+{% csrf_token %}
+<h3 style="text-align: center;">Formulario de reporte</h3>
+<label style="text-align: center;">Descripción del problema</label>
+<textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+
+<button type="submit" class="btn-primary">Reportar</button>
+
+</form>
+
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+
+function validateform(){
+        var entrada = document.getElementById("descripcion").value;
+        if (entrada == ""){
+            alert("ingrese una descripción");
+            return false;
+        }
+    }
+</script>
+{% endblock %}
